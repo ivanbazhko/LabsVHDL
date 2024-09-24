@@ -88,15 +88,15 @@ begin
     D <= '1';
     NLOAD <= '0';
     wait for 10 ns;
+    NLOAD <= '1';
     
     -- Clearing
-    NLOAD <= '1';
     CLR <= '1';
     wait for 10 ns;
     CLR <= '0';
     wait for 10 ns;
     
-    -- Counting Down
+    -- Counting Down To 13
     DOWN <= '0';
     wait for 10 ns;  
     DOWN <= '1';
@@ -110,7 +110,7 @@ begin
     DOWN <= '1';  
     wait for 10 ns;
     
-    -- Counting Up
+    -- Counting Up To 1
     UP <= '0';     
     wait for 10 ns;
     UP <= '1';  
@@ -126,6 +126,31 @@ begin
     UP <= '0';     
     wait for 10 ns;
     UP <= '1';
+    
+    -- Loading 13
+    A <= '1';
+    C <= '1';
+    D <= '1';
+    NLOAD <= '0';
+    wait for 10 ns;
+    NLOAD <= '1';
+    
+    -- Counting Down To 9
+    DOWN <= '0';
+    wait for 10 ns;  
+    DOWN <= '1';
+    wait for 10 ns;
+    DOWN <= '0';
+    wait for 10 ns;
+    DOWN <= '1'; 
+    wait for 10 ns;
+    DOWN <= '0';     
+    wait for 10 ns;
+    DOWN <= '1';  
+    wait for 10 ns;
+    DOWN <= '0';     
+    wait for 10 ns;
+    DOWN <= '1';  
       
     wait for 100 ns;
     
