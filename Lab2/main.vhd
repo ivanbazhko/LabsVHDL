@@ -130,7 +130,9 @@ begin
         N_Q => nqd
     );
     
-    NCO <= not(Qa and Qb and Qc and Qd and not(UP));
+    dclk <= not(UP and DOWN);
+    
+    NCO <= not(not(nqa) and not(nqb) and not(nqc) and not(nqd) and not(UP));
     NBO <= not(nqa and nqb and nqc and nqd and not(DOWN));
     
     nsda <= not(A and not(CLR) and not(NLOAD));
@@ -139,14 +141,14 @@ begin
     
     nsdb <= not(B and not(CLR) and not(NLOAD));
     nrdb <= not(CLR) and not(not(B) and not(NLOAD));
-    ddb <= ((Qa xor Qb) and rsout) or ((Qb xor nqa) and nrsout);
+    ddb <= ((not(nqa) xor not(nqb)) and rsout) or ((not(nqb) xor nqa) and nrsout);
     
     nsdc <= not(C and not(CLR) and not(NLOAD));
     nrdc <= not(CLR) and not(not(C) and not(NLOAD));
-    ddc <= (((Qa and Qb) xor Qc) and rsout) or (((nqa and nqb) xor Qc) and nrsout);
+    ddc <= (((not(nqa) and not(nqb)) xor not(nqc)) and rsout) or (((nqa and nqb) xor not(nqc)) and nrsout);
         
     nsdd <= not(D and not(CLR) and not(NLOAD));
     nrdd <= not(CLR) and not(not(D) and not(NLOAD));
-    ddd <= (((Qa and Qb and Qc) xor Qd) and rsout) or (((nqa and nqb and nqc) xor Qd) and nrsout);
+    ddd <= (((not(nqa) and not(nqb) and not(nqc)) xor not(nqd)) and rsout) or (((nqa and nqb and nqc) xor not(nqd)) and nrsout);
 
 end Behavioral_main;

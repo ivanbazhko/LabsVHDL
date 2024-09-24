@@ -55,7 +55,7 @@ begin
             temp <= '0';
         elsif N_S='0' then   
             temp <= '1';
-        elsif rising_edge(N_C) then                 
+        elsif falling_edge(N_C) then                 
             if (D = '0') then
                 temp <= '0';
             elsif (D = '1') then
