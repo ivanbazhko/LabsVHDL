@@ -51,12 +51,12 @@ begin
     process (C, N_R, N_S)
     begin
         if N_R='0' and N_S='0' then 
-            temp <= 'X';
+            temp <= not(temp);
         elsif N_R='0' then   
             temp <= '0';
         elsif N_S='0' then   
             temp <= '1';
-        elsif rising_edge(C) then                 
+        elsif falling_edge(C) then                 
             if (J='0' and K='0') then
                 temp <= temp;
             elsif (J='0' and K='1') then

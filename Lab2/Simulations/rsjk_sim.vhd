@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date: 20.09.2024 17:46:42
+-- Create Date: 04.10.2024 15:51:30
 -- Design Name: 
--- Module Name: rs_sim - Behavioral_rs
+-- Module Name: rsjk_sim - Behavioral_rsjk
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -31,12 +31,12 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity rs_sim is
+entity rsjk_sim is
 --  Port ( );
-end rs_sim;
+end rsjk_sim;
 
-architecture Behavioral_rs of rs_sim is
-    component rs_trigger
+architecture Behavioral_rsjk of rsjk_sim is
+    component rsjk_trigger
         Port (
             N_S: in std_logic;
             N_R: in std_logic;
@@ -51,7 +51,7 @@ architecture Behavioral_rs of rs_sim is
     signal N_Q : std_logic;
 
     begin
-    rstb: rs_trigger port map (
+    rstb: rsjk_trigger port map (
         N_S => N_S,
         N_R => N_R,
         Q => Q,
@@ -61,8 +61,9 @@ architecture Behavioral_rs of rs_sim is
     test_process: process
     begin
         
-        wait for 20 ns;
+--        wait for 20 ns;
         N_S <= '0';
+        N_R <= '1';
         wait for 20 ns;
         N_R <= '0';
         wait for 20 ns;
@@ -70,7 +71,11 @@ architecture Behavioral_rs of rs_sim is
         wait for 20 ns;
         N_R <= '1';
         wait for 20 ns;
+        N_R <= '0';
+        wait for 20 ns;
+        N_S <= '0';
+        wait for 100 ns;
         
     end process;
 
-end Behavioral_rs;
+end Behavioral_rsjk;

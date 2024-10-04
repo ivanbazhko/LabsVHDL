@@ -52,7 +52,7 @@ end main;
 
 architecture Behavioral_main of main is
 
-    component rs_trigger is
+    component rsjk_trigger is
     Port (
         N_S: in std_logic;
         N_R: in std_logic;
@@ -61,7 +61,7 @@ architecture Behavioral_main of main is
     );
     end component;
     
-    component d_trigger is
+    component djk_trigger is
         Port (
             N_R: in std_logic;
             N_S: in std_logic;
@@ -84,17 +84,19 @@ architecture Behavioral_main of main is
     signal nrdb, nsdb, ddb: std_logic;
     signal nrdc, nsdc, ddc: std_logic;
     signal nrdd, nsdd, ddd: std_logic;
+    
+    signal addj, addk, addc: std_logic;
 
 begin
 
-    rs_1: rs_trigger port map (
+    rs_1: rsjk_trigger port map (
         N_S => UP,
         N_R => DOWN,
         Q => rsout,
         N_Q => nrsout
     );
     
-    d_1: d_trigger port map (
+    d_1: djk_trigger port map (
         N_R => nrda,
         N_S => nsda,
         D => dda,
@@ -103,7 +105,7 @@ begin
         N_Q => nqa
     );
     
-    d_2: d_trigger port map (
+    d_2: djk_trigger port map (
         N_R => nrdb,
         N_S => nsdb,
         D => ddb,
@@ -112,7 +114,7 @@ begin
         N_Q => nqb
     );
     
-    d_3: d_trigger port map (
+    d_3: djk_trigger port map (
         N_R => nrdc,
         N_S => nsdc,
         D => ddc,
@@ -121,7 +123,7 @@ begin
         N_Q => nqc
     );
     
-    d_4: d_trigger port map (
+    d_4: djk_trigger port map (
         N_R => nrdd,
         N_S => nsdd,
         D => ddd,
